@@ -20,9 +20,10 @@ $(".blockInfo").html($(".info1"));
 
 
 ```html
+<!---User input to specificy which block number-->
 <input class="myInput" />
 
-
+<!---Empty div to post the block information-->
 <div class="blockInfo">
 
 </div>
