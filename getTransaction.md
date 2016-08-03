@@ -22,10 +22,10 @@ function getTransaction(){
 
 ```html
 
-<!input box for transaction hash>
+<!---input box for transaction hash-->
 <input class="myInput" />
 
-//div to add code 
+<!--fiv for adding the block information--->
 <div class="info">
   
 </div>
