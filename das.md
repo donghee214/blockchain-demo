@@ -1,6 +1,8 @@
 ```javascript
-///Retreieve accounts stored on local computer
+//Retreieve accounts stored on local computer
 
+
+//header to add web3 API
 if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider);
 } else {
