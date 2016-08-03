@@ -9,17 +9,20 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 
-
-var info = web3.eth.getBlock(3150);
+//get blocknumber and use web3 API to store the string type in "info"
+var info = web3.eth.getBlock($(".myInput"));
 console.log(info);
-var info = JSON.stringify(transaction).replace(/,/g ,"<br>");
-$(".blockInfo").html($(".info"));
-
+//format the information to have spaces between different types of information
+var info1 = JSON.stringify(info).replace(/,/g ,"<br>");
+$(".blockInfo").html($(".info1"));
 
 ```
 
 
 ```html
+<input class="myInput" />
+
+
 <div class="blockInfo">
 
 </div>
