@@ -1,0 +1,12 @@
+//retrieve accounts on local ethereum node
+function getAccounts(){
+	var accounts = web3.eth.accounts;
+	console.log(accounts);
+	var tempStr = "";
+	//all this function does is start new addresses on a new line for easy reading
+	for (var i = 0; i < accounts.length; i++) {
+		tempStr += accounts[i] + ",\n"
+	}
+		$(".AccountsOnNode").html(tempStr.substring(0, tempStr.length - 2));
+	
+}
