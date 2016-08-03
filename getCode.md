@@ -15,7 +15,7 @@ function getCode(){
 	console.log(code);
 	//format the code by spacing out the string
 	var code2 = JSON.stringify(code).replace(/,/g ,"<br>")
-	$(".Code).html(code);
+	$(".Code").html(code);
 }
 
 ```
