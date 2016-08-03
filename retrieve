@@ -1,9 +1,7 @@
 //retrieve accounts on local ethereum node
 
-down vote
-Begin & end the block with ``` like this
 
-```<javascript>
+```
 function getAccounts(){
 	var accounts = web3.eth.accounts;
 	console.log(accounts);
