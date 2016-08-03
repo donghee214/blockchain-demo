@@ -1,7 +1,7 @@
 //retrieve accounts on local ethereum node
 
 
-```
+```<javascript>
 function getAccounts(){
 	var accounts = web3.eth.accounts;
 	console.log(accounts);
