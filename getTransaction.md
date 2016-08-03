@@ -25,7 +25,7 @@ function getTransaction(){
 <!---input box for transaction hash-->
 <input class="myInput" />
 
-<!--fiv for adding the block information--->
+<!--fiv for adding the block information-->
 <div class="info">
   
 </div>
