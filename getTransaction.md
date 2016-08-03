@@ -21,8 +21,11 @@ function getTransaction(){
 ```
 
 ```html
+
+//input box for transaction hash
 <input class="myInput" />
 
+//div to add code 
 <div class="info">
   
 </div>
