@@ -1,26 +1,28 @@
 ```javascript
 
+
+//initialize the owner of the organization as whoever sends this contract
 contract owned {
     address public owner;
 
     function owned() {
         owner = msg.sender;
     }
-
+    
+    //ignore all other modifications to this code if it isn't the owner
     modifier onlyOwner {
         if (msg.sender != owner) throw;
         _
     }
-
+    //transfer owner
     function transferOwnership(address newOwner) onlyOwner {
         owner = newOwner;
     }
 }
 
-
+//declare global variables
 contract Congress is owned {
 
-    /* Contract Variables and events */
     uint public minimumQuorum;
     uint public debatingPeriodInMinutes;
     int public majorityMargin;
@@ -35,6 +37,7 @@ contract Congress is owned {
     event MembershipChanged(address member, bool isMember);
     event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, int majorityMargin);
 
+    //proposal variables
     struct Proposal {
         address recipient;
         uint amount;
@@ -48,7 +51,8 @@ contract Congress is owned {
         Vote[] votes;
         mapping (address => bool) voted;
     }
-
+    
+    //member controls
     struct Member {
         address member;
         bool canVote;
@@ -56,13 +60,14 @@ contract Congress is owned {
         uint memberSince;
     }
 
+    //vote variables
     struct Vote {
         bool inSupport;
         address voter;
         string justification;
     }
 
-    /* modifier that allows only shareholders to vote and create new proposals */
+    //modifier that allows only shareholders to vote and create new proposals 
     modifier onlyMembers {
         if (memberId[msg.sender] == 0
         || !members[memberId[msg.sender]].canVote)
@@ -70,7 +75,7 @@ contract Congress is owned {
         _
     }
 
-    /* First time setup */
+    //First time setup
     function Congress(
         uint minimumQuorumForProposals,
         uint minutesForDebate,
@@ -83,7 +88,7 @@ contract Congress is owned {
 
     }
 
-    /*make member*/
+    //add new members
     function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
         uint id;
         if (memberId[targetMember] == 0) {
@@ -100,7 +105,7 @@ contract Congress is owned {
 
     }
 
-    /*change rules*/
+    //alter conditions for the proposals
     function changeVotingRules(
         uint minimumQuorumForProposals,
         uint minutesForDebate,
@@ -113,7 +118,7 @@ contract Congress is owned {
         ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
     }
 
-    /* Function to create a new proposal */
+    // initialize a new proposal
     function newProposal(
         address beneficiary,
         uint etherAmount,
@@ -137,7 +142,7 @@ contract Congress is owned {
         numProposals = proposalID+1;
     }
 
-    /* function to check if a proposal code matches */
+    //check if the proposal is a repeat
     function checkProposalCode(
         uint proposalNumber,
         address beneficiary,
@@ -159,16 +164,16 @@ contract Congress is owned {
         onlyMembers
         returns (uint voteID)
     {
-        Proposal p = proposals[proposalNumber];         // Get the proposal
-        if (p.voted[msg.sender] == true) throw;         // If has already voted, cancel
-        p.voted[msg.sender] = true;                     // Set this voter as having voted
-        p.numberOfVotes++;                              // Increase the number of votes
-        if (supportsProposal) {                         // If they support the proposal
-            p.currentResult++;                          // Increase score
-        } else {                                        // If they don't
-            p.currentResult--;                          // Decrease the score
+        Proposal p = proposals[proposalNumber];         //Get the proposal
+        if (p.voted[msg.sender] == true) throw;         //If has already voted, cancel
+        p.voted[msg.sender] = true;                     //Set this voter as having voted
+        p.numberOfVotes++;                              //Increase the number of votes
+        if (supportsProposal) {                         //If they support the proposal
+            p.currentResult++;                          //Increase score
+        } else {                                        //If they don't
+            p.currentResult--;                          //Decrease the score
         }
-        // Create a log of this event
+        //Log of this event
         Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
     }
 
