@@ -1,20 +1,20 @@
 
 ```javascript
+
+//contract parameters
 contract MyToken is owned{
-	/*variable of the token*/
+	//initialize variables
 	string public standard = 'Token 0.1'; 
 	string public name;
 	string public symbol;
 	uint8 public decimals;
 	uint public totalSupply;
 	
-	/* Creates an array with all balances*/
+	//creates an array with all the balances
 	mapping (address => uint256) public balanceOf;
 	mapping (address => mapping (address => uint256)) public allowance;
 	
-	/*This generates a public event on the blockchain that will notify client*/
-	event Transfer(address indexed from, address indexed to, uint256 value);
-	
+	//create token
 	function Mytoken(
 		uint256 initialSupply, 
 		string tokenName, 
@@ -22,6 +22,8 @@ contract MyToken is owned{
 		string tokenSymbol,
 		address centralMinter
 	)
+		//sets target of the minted token to self
+		//specifies amount
 		function mintToken(address target, uint256 mintedAmount) onlyOwner{
 		balanceOf[target] += mintedAmount;
 		totalSupply += mintedAmount;
