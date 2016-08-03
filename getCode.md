@@ -11,8 +11,8 @@ if (typeof web3 !== 'undefined') {
 
 function getCode(){
 	//get the address of the code from input
-	var code = web3.eth.getCode("$(".myInput"));
-	console.log(code);	
+	var code = web3.eth.getCode($(".myInput"));
+	console.log(code);
 	//format the code by spacing out the string
 	var code2 = JSON.stringify(code).replace(/,/g ,"<br>")
 	$(".Code).html(code);
