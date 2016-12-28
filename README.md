@@ -1,5 +1,5 @@
 # blockchain-demo
-Repo containing all the solidity code behind the [blockchain demo site](block-demo.mybluemix.net)
+Repo containing all the solidity code behind the [blockchain demo site](http://block-demo.mybluemix.net/)
 
 The current implementation assumes you're not connected to the Ethereum network<br>
 ...The Demo would cost ether to use as it requires uploading data to the blockchain (albeit very little)<br>
